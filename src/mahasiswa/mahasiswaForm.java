@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package siswa;
+package mahasiswa;
 
 /**
  *
@@ -10,9 +10,9 @@ package siswa;
  */
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
-import siswa.Koneksi;
+import mahasiswa.Koneksi;
 
-public class siswaform extends javax.swing.JFrame {
+public class mahasiswaForm extends javax.swing.JFrame {
 
     DefaultTableModel model;
     private boolean isEditMode = false;
@@ -21,7 +21,7 @@ public class siswaform extends javax.swing.JFrame {
     /**
      * Creates new form siswaform
      */
-    public siswaform() {
+    public mahasiswaForm() {
         initComponents();
         createTableIfNotExists();
         tampilData();
@@ -29,7 +29,7 @@ public class siswaform extends javax.swing.JFrame {
 
     private void createTableIfNotExists() {
         try (Connection conn = Koneksi.getConnection()) {
-            String sql = "CREATE TABLE IF NOT EXISTS siswa ("
+            String sql = "CREATE TABLE IF NOT EXISTS mahasiswa ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "nama TEXT, nim TEXT, alamat TEXT, jenis_kelamin TEXT)";
             Statement stmt = conn.createStatement();
@@ -40,10 +40,10 @@ public class siswaform extends javax.swing.JFrame {
     }
 
     private void tampilData() {
-        model = (DefaultTableModel) Tabel_Siswa.getModel();
+        model = (DefaultTableModel) Tabel_Mahasiswa.getModel();
         model.setRowCount(0); // Kosongkan tabel
         try (Connection conn = Koneksi.getConnection()) {
-            String sql = "SELECT * FROM siswa";
+            String sql = "SELECT * FROM mahasiswa";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             int no = 1;
@@ -80,7 +80,7 @@ public class siswaform extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Slc_Jenis_kelamin = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabel_Siswa = new javax.swing.JTable();
+        Tabel_Mahasiswa = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -88,7 +88,7 @@ public class siswaform extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nama siswa");
+        jLabel1.setText("Nama Mahasiswa");
 
         jLabel2.setText("Nim");
 
@@ -98,7 +98,7 @@ public class siswaform extends javax.swing.JFrame {
 
         Slc_Jenis_kelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "laki-laki", "perempuan" }));
 
-        Tabel_Siswa.setModel(new javax.swing.table.DefaultTableModel(
+        Tabel_Mahasiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -106,7 +106,7 @@ public class siswaform extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Nomor", "Nama Siswa", "Nim", "Alamat", "Jenis Kelamin"
+                "Nomor", "Nama mahasiswa", "Nim", "Alamat", "Jenis Kelamin"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -117,12 +117,12 @@ public class siswaform extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Tabel_Siswa.addMouseListener(new java.awt.event.MouseAdapter() {
+        Tabel_Mahasiswa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tabel_SiswaMouseClicked(evt);
+                Tabel_MahasiswaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(Tabel_Siswa);
+        jScrollPane1.setViewportView(Tabel_Mahasiswa);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Data Mahasiswa");
@@ -171,8 +171,8 @@ public class siswaform extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNama_Siswa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNama_Siswa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(26, 26, 26)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,13 +217,13 @@ public class siswaform extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Tabel_SiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabel_SiswaMouseClicked
-        int row = Tabel_Siswa.getSelectedRow();
+    private void Tabel_MahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabel_MahasiswaMouseClicked
+        int row = Tabel_Mahasiswa.getSelectedRow();
         if (evt.getClickCount() == 1 && row != -1) {
-            String nama = Tabel_Siswa.getValueAt(row, 1).toString();
-            String nim = Tabel_Siswa.getValueAt(row, 2).toString();
-            String alamat = Tabel_Siswa.getValueAt(row, 3).toString();
-            String jk = Tabel_Siswa.getValueAt(row, 4).toString();
+            String nama = Tabel_Mahasiswa.getValueAt(row, 1).toString();
+            String nim = Tabel_Mahasiswa.getValueAt(row, 2).toString();
+            String alamat = Tabel_Mahasiswa.getValueAt(row, 3).toString();
+            String jk = Tabel_Mahasiswa.getValueAt(row, 4).toString();
 
             int pilihan = javax.swing.JOptionPane.showOptionDialog(
                     this,
@@ -252,7 +252,7 @@ public class siswaform extends javax.swing.JFrame {
 
                 if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
                     try (Connection conn = Koneksi.getConnection()) {
-                        String sql = "DELETE FROM siswa WHERE nim=?";
+                        String sql = "DELETE FROM mahasiswa WHERE nim=?";
                         PreparedStatement pst = conn.prepareStatement(sql);
                         pst.setString(1, nim);
                         pst.executeUpdate();
@@ -265,7 +265,7 @@ public class siswaform extends javax.swing.JFrame {
             }
             // Batal → Tidak lakukan apa pun
         }
-    }//GEN-LAST:event_Tabel_SiswaMouseClicked
+    }//GEN-LAST:event_Tabel_MahasiswaMouseClicked
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         String nama = txtNama_Siswa.getText();
@@ -281,7 +281,7 @@ public class siswaform extends javax.swing.JFrame {
         try (Connection conn = Koneksi.getConnection()) {
             if (isEditMode) {
                 // UPDATE
-                String sql = "UPDATE siswa SET nama=?, nim=?, alamat=?, jenis_kelamin=? WHERE nim=?";
+                String sql = "UPDATE mahasiswa SET nama=?, nim=?, alamat=?, jenis_kelamin=? WHERE nim=?";
                 PreparedStatement pst = conn.prepareStatement(sql);
                 pst.setString(1, nama);
                 pst.setString(2, nim);
@@ -292,7 +292,7 @@ public class siswaform extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "Data berhasil diupdate!");
             } else {
                 // INSERT
-                String sql = "INSERT INTO siswa(nama, nim, alamat, jenis_kelamin) VALUES (?, ?, ?, ?)";
+                String sql = "INSERT INTO mahasiswa(nama, nim, alamat, jenis_kelamin) VALUES (?, ?, ?, ?)";
                 PreparedStatement pst = conn.prepareStatement(sql);
                 pst.setString(1, nama);
                 pst.setString(2, nim);
@@ -336,27 +336,28 @@ public class siswaform extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(siswaform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mahasiswaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(siswaform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mahasiswaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(siswaform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mahasiswaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(siswaform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mahasiswaForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new siswaform().setVisible(true);
+                new mahasiswaForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Slc_Jenis_kelamin;
-    private javax.swing.JTable Tabel_Siswa;
+    private javax.swing.JTable Tabel_Mahasiswa;
     private javax.swing.JTextField Txt_Alamat;
     private javax.swing.JTextField Txt_Nim;
     private javax.swing.JButton btnSimpan;
